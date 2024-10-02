@@ -6,7 +6,7 @@ import { WorkoutService } from './workout.service';
 import { Workout } from 'src/data/entities/workout.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Workout])],
+  imports: [TypeOrmModule.forFeature([Workout, User])],
   controllers: [WorkoutController],
   providers: [WorkoutService],
 })

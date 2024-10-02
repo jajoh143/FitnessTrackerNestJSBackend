@@ -4,5 +4,6 @@ export class CreateExerciseDto {
     readonly description: string;
     readonly duration: number; // in minutes
     readonly intensity: string; // e.g., 'low', 'medium', 'high'
+    readonly workoutId: number;
   }
   

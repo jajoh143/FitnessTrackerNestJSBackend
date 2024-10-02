@@ -8,9 +8,10 @@ import { LoginUserDto } from 'src/data/dto/user/login-user.dto';
 
 @Injectable()
 export class UserService {
+  
   /**
-   * Here, we have used data mapper approch for this tutorial that is why we
-   * injecting repository here. Another approch can be Active records.
+   * Constructor for the User Service
+   * @param userRepository
    */
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,

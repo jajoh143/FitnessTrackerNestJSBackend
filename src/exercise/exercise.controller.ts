@@ -14,7 +14,7 @@ export class ExerciseController {
 
   @Get()
   findAll() {
-    return this.exerciseService.findAll();
+    return this.exerciseService.findAllExercise();
   }
 
   @Get(':id')
@@ -29,6 +29,6 @@ export class ExerciseController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.exerciseService.remove(+id);
+    return this.exerciseService.removeExercise(+id);
   }
 }

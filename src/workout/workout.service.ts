@@ -1,21 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateWorkoutDto } from 'src/data/dto/workout/create-workout.dto';
+import { User } from 'src/data/entities/user.entity';
 import { Workout } from 'src/data/entities/workout.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class WorkoutService {
   constructor(
-    @InjectRepository(Workout) private readonly workoutRepository: Repository<Workout>
+    @InjectRepository(Workout) private readonly workoutRepository: Repository<Workout>,
+    @InjectRepository(User) private readonly userRepository: Repository<User>
   ) {}
 
 
-  create(createWorkoutDto: CreateWorkoutDto) {
+  async create(createWorkoutDto: CreateWorkoutDto) {
     const workout = new Workout();
     workout.workout_name = createWorkoutDto.name;
     workout.created_at = new Date();
     workout.description = createWorkoutDto.notes;
+    workout.user = await this.userRepository.findBy({ user_id: createWorkoutDto.user_id })
+      .then((userArray: User[]) => userArray.length > 0 ? userArray[0] : {} as User);
     return this.workoutRepository.save(workout);
   }
 
@@ -42,13 +46,8 @@ export class WorkoutService {
 //     return null;
 //   }
 
-//   remove(id: number) {
-//     const workoutIndex = this.workouts.findIndex(workout => workout.id === id);
-//     if (workoutIndex > -1) {
-//       const removedWorkout = this.workouts.splice(workoutIndex, 1);
-//       return removedWorkout[0];
-//     }
-//     return null;
-//   }
+  remove(id: number) {
+    return this.workoutRepository.delete(id);
+  }
 
 }

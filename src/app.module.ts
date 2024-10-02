@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { join } from 'path';
 import { WorkoutModule } from './workout/workout.module';
+import { ExerciseModule } from './exercise/exercise.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { WorkoutModule } from './workout/workout.module';
       logging: true,
       entities: [join(__dirname, '**', './data/entities/*.entity.{ts,js}')]
     }),
+    ExerciseModule,
     UserModule,
     WorkoutModule
   ],

@@ -27,8 +27,8 @@ export class WorkoutController {
   //   return this.workoutService.update(+id, updateWorkoutDto);
   // }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.workoutService.remove(+id);
-  // }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.workoutService.remove(+id);
+  }
 }
