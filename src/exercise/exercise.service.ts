@@ -27,7 +27,7 @@ export class ExerciseService {
    */
   create(createExerciseDto: CreateExerciseDto) {
     const newExercise: Exercise = new Exercise();
-    newExercise.exercise_name = createExerciseDto.name;
+    newExercise.name = createExerciseDto.name;
     newExercise.description = createExerciseDto.description;
     newExercise.created_at = new Date();
     this.exerciseRepository.save(newExercise);
@@ -39,7 +39,7 @@ export class ExerciseService {
    * @returns promise of array of users
    */
   findAllExercise(): Promise<Exercise[]> {
-    return this.exerciseRepository.find({ order: { exercise_name: 'ASC' }});
+    return this.exerciseRepository.find({ order: { name: 'ASC' }});
   }
 
   /**
@@ -47,8 +47,8 @@ export class ExerciseService {
    * @param id exercise id
    * @returns the corresponding exercise if it exists
    */
-  findOne(exercise_id: number) {
-    return this.exerciseRepository.findOneBy({ exercise_id });
+  findOne(id: number) {
+    return this.exerciseRepository.findOneBy({ id });
   }
 
   /**
