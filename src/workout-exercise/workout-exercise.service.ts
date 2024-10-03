@@ -17,7 +17,7 @@ export class WorkoutExerciseService {
     findOne(id: number): Promise<WorkoutExercise> {
         return this.workoutExerciseRepository.findOne({
             where: {
-                workout_exercise_id: id
+                id
             },
             relations: ['workout', 'exercise']
         });

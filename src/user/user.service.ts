@@ -25,10 +25,8 @@ export class UserService {
    */
   createUser(createUserDto: CreateUserDto): Promise<User> {
     const user: User = new User();
-    user.username = createUserDto.username;
+    user.name = createUserDto.username;
     user.email = createUserDto.email;
-    user.password_hash = createUserDto.password_hash;
-    user.created_at = new Date();
     return this.userRepository.save(user);
   }
 
@@ -45,12 +43,12 @@ export class UserService {
    * @param id is type of number, which represent the id of user.
    * @returns promise of user
    */
-  viewUser(user_id: number): Promise<User> {
-    return this.userRepository.findOneBy({ user_id });
+  viewUser(id: number): Promise<User> {
+    return this.userRepository.findOneBy({ id });
   }
 
   loginUser(loginUserDto: LoginUserDto): Promise<User> {
-    return this.userRepository.findOneByOrFail({ username: loginUserDto.username, password_hash: loginUserDto.password_hash });
+    return this.userRepository.findOneByOrFail({ name: loginUserDto.username });
   }
 
   /**
@@ -62,10 +60,9 @@ export class UserService {
    */
   updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user: User = new User();
-    user.user_id = id;
-    user.username = updateUserDto.username;
+    user.id = id;
+    user.name = updateUserDto.username;
     user.email = updateUserDto.email;
-    user.password_hash = updateUserDto.password_hash;
     return this.userRepository.save(user);
   }
 

@@ -15,7 +15,7 @@ export class WorkoutExerciseHistoryService {
     }
 
     findOne(id: number): Promise<WorkoutExerciseHistory> {
-        return this.workoutExerciseHistoryRepository.findOneBy({ workoutExercise: { workout_exercise_id: id}});
+        return this.workoutExerciseHistoryRepository.findOneBy({ workoutExercise: { id}});
     }
 
     create(workoutExerciseHistory: WorkoutExerciseHistory): Promise<WorkoutExerciseHistory> {
