@@ -4,20 +4,20 @@ import { WorkoutExercise } from './workout-exercise.entity';
 @Entity()
 export class WorkoutExerciseHistory {
     @PrimaryGeneratedColumn()
-    history_id: number;
+    id: number;
+
+    @ManyToOne(() => WorkoutExercise, workoutExercise => workoutExercise.history)
+    workoutExercise: WorkoutExercise;
 
     @Column()
     date: Date;
 
     @Column()
-    sets_completed: number;
+    sets: number;
 
     @Column()
-    reps_completed: number;
+    reps: number;
 
     @Column()
-    weight_used: number;
-
-    @ManyToOne(() => WorkoutExercise, workoutExercise => workoutExercise.history)
-    workoutExercise: WorkoutExercise;
+    weight: number;
 }

@@ -1,23 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import { User } from './user.entity';
 import { WorkoutExercise } from './workout-exercise.entity';
+import { Exercise } from './exercise.entity';
 
 @Entity()
 export class Workout {
     @PrimaryGeneratedColumn()
-    workout_id: number;
+    id: number;
 
     @Column()
-    workout_name: string;
+    date: Date;
 
-    @Column()
-    description: string;
-
-    @Column()
-    created_at: Date;
-
-    @ManyToOne(() => User, user => user.workouts)
-    user: User;
+    @ManyToMany(() => Exercise)
+    @JoinTable()
+    exercises: Exercise[];
 
     @OneToMany(() => WorkoutExercise, workoutExercise => workoutExercise.workout)
     workoutExercises: WorkoutExercise[];

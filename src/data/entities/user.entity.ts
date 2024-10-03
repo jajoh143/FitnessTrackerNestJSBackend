@@ -1,23 +1,18 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Workout } from './workout.entity';
+import { UserWorkout } from './user-workout.entity';
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
-    user_id: number;
+    id: number;
 
     @Column()
-    username: string;
+    name: string;
 
     @Column()
     email: string;
 
-    @Column()
-    password_hash: string;
-
-    @Column()
-    created_at: Date;
-
-    @OneToMany(() => Workout, workout => workout.user)
-    workouts: Workout[];
+    @OneToMany(() => UserWorkout, userWorkout => userWorkout.user)
+    userWorkouts: UserWorkout[];
 }

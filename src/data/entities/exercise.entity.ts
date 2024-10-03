@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { WorkoutExercise } from './workout-exercise.entity';
 
 @Entity()
 export class Exercise {
@@ -16,4 +17,7 @@ export class Exercise {
 
     @Column()
     created_at: Date;
+
+    @OneToMany(() => WorkoutExercise, workoutExercise => workoutExercise.exercise)
+    workoutExercises: WorkoutExercise[];
 }

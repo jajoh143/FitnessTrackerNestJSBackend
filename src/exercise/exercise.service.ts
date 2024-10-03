@@ -39,7 +39,7 @@ export class ExerciseService {
    * @returns promise of array of users
    */
   findAllExercise(): Promise<Exercise[]> {
-    return this.exerciseRepository.find();
+    return this.exerciseRepository.find({ order: { exercise_name: 'ASC' }});
   }
 
   /**
