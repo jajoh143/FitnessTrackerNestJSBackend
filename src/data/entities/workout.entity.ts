@@ -9,6 +9,12 @@ export class Workout {
     id: number;
 
     @Column()
+    name: string;
+
+    @Column()
+    description: string;
+
+    @Column()
     date: Date;
 
     @ManyToMany(() => Exercise)

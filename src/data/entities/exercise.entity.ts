@@ -4,10 +4,10 @@ import { WorkoutExercise } from './workout-exercise.entity';
 @Entity()
 export class Exercise {
     @PrimaryGeneratedColumn()
-    exercise_id: number;
+    id: number;
 
     @Column()
-    exercise_name: string;
+    name: string;
 
     @Column()
     description: string;
